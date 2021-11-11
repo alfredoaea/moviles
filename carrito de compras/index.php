@@ -3,7 +3,6 @@ require_once('views/header_tienda.php');
 ?>
 
 	<!-- Carrito de Compras -->
-
 	<div class="wrap-header-cart js-panel-cart">
 		<div class="s-full js-hide-cart"></div>
 
