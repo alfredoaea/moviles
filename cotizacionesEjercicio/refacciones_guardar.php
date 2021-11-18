@@ -21,6 +21,7 @@ if ($row != 0) {
     $ins = $con->prepare("INSERT INTO refaccion VALUES(?,?,?,?,?)");
     $ins->bind_param("iisss", $id, $marca_id_post, $nombre_refaccion_post, $descripcion_refaccion_post, $refaccion_imagen);
     if ($ins->execute()) {
+        
         echo "Refacci&oacute;n guardada <br> Ahora debes agregarle un precio de proveedor (si no lo haces puedes provocar p&eacute;rdida de informaci&oacute;n) --";
         echo "Registrado Refaccion";
         header("Location: alerta.php?tipo=exito&operacion=Proveedor Guardado&destino=refacciones_seleccionar_marca.php");

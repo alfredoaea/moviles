@@ -21,7 +21,7 @@ $nombre_marca_seleccionada = $_GET['marca_nombre'];
         <!--termina código que incluye el menú responsivo-->
         <div class="container">
             <div class="jumbotron">
-                <form role="form" id="login-form" method="post" class="form-signin" action="refacciones_guardar.php">
+                <form enctype="multipart/form-data" role="form" id="login-form" method="post" class="form-signin" action="refacciones_guardar.php">
                     <div class="h2">
                         Detalles de la refacci&oacute;n
                     </div>
