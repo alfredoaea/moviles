@@ -10,10 +10,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $ins=$con->prepare("INSERT INTO proveedor VALUES(?,?,?,?,?,?)");
     $ins->bind_param("isssss",$id,$nombre_del_proveedor_post,$direccion_del_proveedor_post,$telefono_1_post,$telefono_2_post,$correo_proveedor_post);
     if($ins->execute()){
-        header("Location: alerta.php?tipo=exito&operacion=Proveedor Guardado&destino=proveedor_registrar.php");
+        echo "Se ha registrado el proveedor";
+        header("Location: alerta.php?tipo=exito&operacion=Proveedor Guardada&destino=proveedor_registrar.php");
     }
     else{
-        header("Location: alerta.php?tipo=fracaso&operacion=Proveedor No Guardado&destino=proveedor_registrar.php");
+        echo "Error al insertar Proveedor";
+        header("Location: alerta.php?tipo=fracaso&operacion=Proveedor No Guardada&destino=proveedor_registrar.php");
     }
     $ins->close();
     $con->close();

@@ -8,6 +8,7 @@
         <!--código que incluye Bootstrap-->
         <?php include'inc/incluye_bootstrap.php' ?>
         <!--termina código que incluye Bootstrap-->
+
     </head>
     <body>
         <!--código que incluye el menú responsivo-->
@@ -19,6 +20,7 @@
                 <form role="form" id="login-form" 
                       method="post" class="form-signin" 
                       action="proveedor_guardar.php">
+                    
                     <div class="h2">
                         DATOS DEL PROVEEDOR
                     </div>
@@ -48,6 +50,7 @@
 
                         <input type="email" class="form-control" id="correo_proveedor" name="correo_proveedor"
                                placeholder="Ingresa correo electr&oacute;nico" style="text-transform:uppercase;">
+
                     </div>
                     <br>
                     <button type="submit" class="btn btn-primary">Guardar</button>

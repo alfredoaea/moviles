@@ -38,6 +38,8 @@
   })
 </script>
 
+<script src="assets/js/main.js"></script>
+
 <!--<script>
     Swal.fire(
   'Good job!',
