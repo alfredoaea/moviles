@@ -1,3 +1,9 @@
-<?php require_once 'app/config.php'?>
+<?php 
+require_once 'app/config.php';
 
-<?php require_once 'views/carrito_view.php'?>
+$algo =
+[
+    'title' => 'Bienvenido al Carrito'
+];
+
+render_view('carrito_view', $algo);

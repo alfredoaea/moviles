@@ -77,6 +77,42 @@
                   <div class="card-body p-2">
                     <h5 class="card-title text-truncate">Producto Producto Producto</h5>
                     <button class="btn btn-sm btn-success" data-toggle="tooltip" title="Agregar al Carrito"><i class="fas fa-plus"></i> Agregar al Carrito</button>
+                  </div>                
+                </div>
+              </div>
+              <div class="col-3 mb-3">
+                <div class="card">
+                  <img src="https://placeimg.com/300/300/tech" alt="Producto" class="card-img-top">
+                  <div class="card-body p-2">
+                    <h5 class="card-title text-truncate">Producto Producto Producto</h5>
+                    <button class="btn btn-sm btn-success" data-toggle="tooltip" title="Agregar al Carrito"><i class="fas fa-plus"></i> Agregar al Carrito</button>
+                  </div>
+                </div>
+              </div>
+              <div class="col-3 mb-3">
+                <div class="card">
+                  <img src="https://placeimg.com/300/300/tech" alt="Producto" class="card-img-top">
+                  <div class="card-body p-2">
+                    <h5 class="card-title text-truncate">Producto Producto Producto</h5>
+                    <button class="btn btn-sm btn-success" data-toggle="tooltip" title="Agregar al Carrito"><i class="fas fa-plus"></i> Agregar al Carrito</button>
+                  </div>
+                </div>
+              </div>
+              <div class="col-3 mb-3">
+                <div class="card">
+                  <img src="https://placeimg.com/300/300/tech" alt="Producto" class="card-img-top">
+                  <div class="card-body p-2">
+                    <h5 class="card-title text-truncate">Producto Producto Producto</h5>
+                    <button class="btn btn-sm btn-success" data-toggle="tooltip" title="Agregar al Carrito"><i class="fas fa-plus"></i> Agregar al Carrito</button>
+                  </div>
+                </div>
+              </div>
+              <div class="col-3 mb-3">
+                <div class="card">
+                  <img src="https://placeimg.com/300/300/tech" alt="Producto" class="card-img-top">
+                  <div class="card-body p-2">
+                    <h5 class="card-title text-truncate">Producto Producto Producto</h5>
+                    <button class="btn btn-sm btn-success" data-toggle="tooltip" title="Agregar al Carrito"><i class="fas fa-plus"></i> Agregar al Carrito</button>
                   </div>
                 </div>
               </div>
@@ -139,7 +175,7 @@
                   <td class="text-success text-end">$250</td>
                   <tr>
                     <th>Envio</th>
-                    <td class="text-success text-end">$50</td>
+                    <td class="text-success text-end">$<?php echo SHIPPING_COST ?></td>
                   </tr>
                   <tr>
                     <th>Total</th>

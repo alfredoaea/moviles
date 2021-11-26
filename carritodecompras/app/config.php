@@ -22,5 +22,14 @@ define('IMAGES',ASSETS.'images/');
 define('JS',ASSETS.'js/');
 define('PLUGINS',ASSETS.'plugins/');
 
+/**
+ * constantes adicionales 
+ */
+define('SHIPPING_COST', 100.00);
+
+/**
+ * incluir todas nuestras funcines personalizadas
+ */
+require_once APP.'function.php';
 
 ?>
