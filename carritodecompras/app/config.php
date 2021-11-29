@@ -1,5 +1,8 @@
 <?php
-
+/**
+ * inicializamos session de usuario
+ */
+    session_start();
 /**
  * url constante
  */

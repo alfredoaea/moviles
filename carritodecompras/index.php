@@ -1,9 +1,11 @@
 <?php 
 require_once 'app/config.php';
 
-$algo =
+$data =
 [
-    'title' => 'Bienvenido al Carrito'
+    'title' => 'Bienvenido al Carrito',
+    'products' => get_products()
 ];
 
-render_view('carrito_view', $algo);
+
+render_view('carrito_view', $data);
