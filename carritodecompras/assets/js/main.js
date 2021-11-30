@@ -8,8 +8,37 @@ $(document).ready(function()
 
       //peticion ajax
       $.ajax({
-          url: 'app/ajax.php',
-          type: 'GET'
+          url: 'ajax.php',
+          type: 'POST',
+          dataType: 'JSON',
+          data:
+          {
+            action
+          },
+
+          beforeSend: function()
+          {
+              wrapper.waitMe();
+          }
+
+      }).done(function(res){
+
+        if(res.estatus === 200)
+        {
+            wrapper.html(res.data);
+        }
+
+      }).fail(function(err){
+
+            swal.fire('Upss!','Ocurrio un error','error');
+            return false;
+
+      }).always(function(){
+
+          setTimeout(() => {
+              wrapper.waitMe('hide');
+          }, 1500);
+
       });
    };
 

@@ -68,3 +68,16 @@ function get_cart()
     return $_SESSION['cart'];
 
 }
+
+function json_output($estatus = 200, $msg = '', $data = [])
+{
+    http_response_code($estatus);
+    $r =
+    [
+        'estatus' => $estatus,
+        'msg' => $msg,
+        'data' => $data
+    ];
+    echo json_encode($r);
+    die;
+}
