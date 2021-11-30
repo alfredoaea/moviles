@@ -1,9 +1,9 @@
-<?php require 'includes/inc_header.php'?>
+<?php require_once 'includes/inc_header.php'?>
 
-<?php require 'includes/inc_buscador.php'?>
+<?php require_once 'includes/inc_buscador.php'?>
   
     <!--contenido del sitio-->
-      < class="container-fluid py-5">
+      <div class="container-fluid py-5">
         <div class="row">
           <div class="col-xl-8">
             <h1>Productos</h1>
@@ -27,7 +27,7 @@
           <div class="col-xl-4 bg-light">
             <h1>Carrito</h1>
           <!-- contenido del carro -->  
-          <div class="cart-wrapper">
+          <div id="cart_wrapper">
                 <div div class="table-responsive">
                   <table class="table table-hover table-striperd table-sm">
                     <thead>
@@ -93,8 +93,10 @@
                   <button type="button" class="btn btn-info col-12">Pagar Ahora</button>
                 </div>
           </div>         
-        </div>
+        <!--</div>-->
+      </div>
       </div>
     
 
-<?php require 'includes/inc_footer.php'?>
+<?php require_once 'includes/inc_footer.php'?>
+
