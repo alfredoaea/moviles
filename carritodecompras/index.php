@@ -8,4 +8,5 @@ $data =
 ];
 
 
+
 render_view('carrito_view', $data);

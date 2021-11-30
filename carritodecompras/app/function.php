@@ -50,6 +50,7 @@ function get_cart()
 
     if (isset($_SESSION['cart'])) 
     {
+        $_SESSION['cart']['cart_totals'] = calculate_cart_totals();
         return $_SESSION['cart'];
     }
 
@@ -57,15 +58,115 @@ function get_cart()
     $cart =
     [
         'products' => [],
-        'total_products' => 0,
-        'subtotal' => 0,
-        'shipment' => 0,
-        'total' => 0,
+        'cart_totals' => calculate_cart_totals(),
         'payment_url' => null
     ];
 
     $_SESSION['cart'] = $cart;
     return $_SESSION['cart'];
+
+}
+
+function calculate_cart_totals()
+{
+    //si el carro so existe se inicializa
+    //si no hay productos aun pero el carrito si existe ya
+    if(!isset($_SESSION['cart']) || empty($_SESSION['cart']['products']))
+    {
+        $cart_totals =
+    [
+        
+        'subtotal' => 0,
+        'shipment' => 0,
+        'total' => 0
+        
+    ];
+    
+    return $cart_totals;
+
+    }
+
+    //calcular los totales segun los productos en carrito
+    $subtotal = 0;
+    $shipment = SHIPPING_COST;
+    $total = 0;
+
+    //si ya hay productos hay que sumar las cantidades
+    foreach($_SESSION['cart']['products'] as $p)
+    {
+        $_total = floatval($p['cantidad'] = $p['precio']);
+        $subtotal = floatval($subtotal + $_total);
+    }
+
+    $total = floatval($subtotal + $shipment);
+    $cart_totals = 
+    [
+        
+        'subtotal' => $subtotal,
+        'shipment' => $shipment,
+        'total' => $total
+        
+    ];
+
+    return $cart_totals;
+}
+
+function add_to_cart($id_producto, $cantidad = 1)
+{
+    $new_product =
+    [
+        'id' => NULL,
+        'sku' => NULL,
+        'nombre' => NULL,
+        'cantidad' => NULL,
+        'precio' => NULL,
+        'imagen' => NULL
+    ];
+    
+    $product = get_product_by_id($id_producto);
+    //algp paso o no existe el producto
+    if (!$product) 
+    {
+        return false;
+    }
+
+    $new_product =
+    [
+        'id' => $product['id'],
+        'sku' => $product['sku'],
+        'nombre' => $product['nombre'],
+        'cantidad' => $cantidad,
+        'precio' => $product['precio'],
+        'imagen' => $product['imagen']
+    ];
+
+    //si no existe el carro, es ocvio que no existe el producto
+    // entoncew lo agregamos directamente
+    if(!isset($_SESSION['cart']) || empty($_SESSION['cart']['products']))
+    {
+        $_SESSION['cart']['products'][] = $new_product;
+    return true;
+
+    }
+
+    // si se agrega pero vamos primero a loopear en el array de todos los productos
+    // para buscar uno con el mismo id si existe
+    foreach($_SESSION['cart']['products'] as $i => $p)
+    {
+        if($p['id'] == $id_producto)
+        {
+            $_cantidad = $p['cantidad'] + $cantidad;
+            $p['cantidad'] = $_cantidad;
+            $_SESSION['cart']['products'][$i] = $p;
+            return true;
+        }
+        else
+        {
+            $_SESSION['cart']['products'][] = $new_product;
+            return true;
+        }
+    }
+    return false;
 
 }
 
