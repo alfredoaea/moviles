@@ -167,6 +167,13 @@ function add_to_cart($id_producto, $cantidad = 1)
 
 }
 
+function destroy_cart()
+{
+    unset($_SESSION['cart']);
+    session_destroy();
+    return true;
+}
+
 function json_output($estatus = 200, $msg = '', $data = [])
 {
     http_response_code($estatus);

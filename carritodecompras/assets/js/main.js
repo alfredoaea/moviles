@@ -61,6 +61,9 @@ $(document).ready(function()
         cantidad = $(this).data('cantidad'),
         action = 'post';
 
+
+        //console.log($(this).data('cantidad'));
+
         $.ajax({
             url: 'ajax.php',
             type: 'POST',
@@ -96,5 +99,42 @@ $(document).ready(function()
 
         });
     });
+
+    $('body').on('click', '.do_destroy_cart', destroy_cart);
+    function destroy_cart(event)
+    {
+        var action = 'destroy',
+        confirmation;
+
+        confirmation = confirm('Estas seguro?');
+
+        if(!confirmation) return;
+
+        $.ajax({
+            url: 'ajax.php',
+            type: 'POST',
+            dataType: 'JSON',
+            data:
+            {
+              action
+            },
+  
+        }).done(function(res){
+            if(res.estatus === 200)
+            {
+                swal.fire('Carrito Borrado con Exito!');
+                load_cart();
+                return;
+            }
+  
+        }).fail(function(err){
+  
+              swal.fire('Upss!','Hubo un Error, Intenta de Nuevo','error');
+              return false;
+  
+        }).always(function(){
+  
+        });
+    }
 });
 

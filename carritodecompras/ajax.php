@@ -59,7 +59,7 @@ switch($action)
                     '</tbody>     
                     </table>
                </div>
-               <button class="btn btn-sm btn-danger">Vaciar Carrito</button>';
+               <button class="btn btn-sm btn-danger do_destroy_cart">Vaciar Carrito</button>';
           }else
           {
                $output.= '
@@ -106,6 +106,15 @@ switch($action)
 
                json_output(201);
           break;
+
+          case 'destroy':
+               if (!destroy_cart()) 
+               {
+                    json_output(400,'No se pudo agregar al carrito, intenta de nuevo');
+               }
+
+               json_output(200);
+               break;
 
 }
 ?>
