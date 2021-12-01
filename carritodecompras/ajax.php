@@ -31,23 +31,32 @@ switch($action)
                          <thead>
                          <tr>
                          <th>Producto</th>
+                         <th class="text-center">Precio</th>
                          <th class="text-center">Cantidad</th>
-                         <th class="text-center">Total</th>
+                         <th class="text-right">Total</th>
                          <th class="text-right"></th>
                          </tr>
                          </thead>
-                    <tbody>
-                    <tr>
-                    <td class="align-middle">Producto 1
-                         <small class="d-block text-muted">sku 123456789</small>
-                    </td>
-                    <td class="align-middle text-center" width="5%">
-                         <input type="number" min="0" max="50" value="1" class="form-control form-control-sm">
-                    </td>
-                    <td class="align-middle text-center"> $150.00</td>
-                    <td class="text-right align-middle"><i class="fas fa-times text-danger"></i></td>
-                    </tr>
-                    </tbody>     
+                    <tbody>';
+                    foreach($cart['products'] as $p)
+                    {
+                         $output .=
+                         '<tr>
+                              <td class="align-middle" width="25%">
+                              <span class="d-block text-truncate">'.$p['nombre'].'</span>
+                                   <small class="d-block text-muted">'.$p['sku'].'</small>
+                              </td>
+                              <td class="align-middle text-center">'.format_currency($p['precio']).'</td>
+                              <td class="align-middle text-center" width="5%">
+                                   <input type="number" min="0" max="50" class="form-control form-control-sm" value="'.$p['cantidad'].'">
+                              </td>
+                              <td class="align-middle text-right">'.format_currency(floatval($p['cantidad'] * $p['precio'])).'</td>
+                              <td class="text-right align-middle"><i class="fas fa-times text-danger"></i></td>
+                         </tr>';
+                    }
+                    
+                    $output .= 
+                    '</tbody>     
                     </table>
                </div>
                <button class="btn btn-sm btn-danger">Vaciar Carrito</button>';

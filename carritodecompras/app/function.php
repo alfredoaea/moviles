@@ -10,7 +10,7 @@ function get_product_by_id($id) //reutilizando la funcion para reconocer el id
     $products = get_products();
     foreach($products as $i => $v)
     {
-        if ($v['id'] === $id) 
+        if (intval($v['id']) === (int)$id) 
         {
             return $products[$i];
         }
@@ -94,7 +94,7 @@ function calculate_cart_totals()
     //si ya hay productos hay que sumar las cantidades
     foreach($_SESSION['cart']['products'] as $p)
     {
-        $_total = floatval($p['cantidad'] = $p['precio']);
+        $_total = floatval($p['cantidad'] * $p['precio']);
         $subtotal = floatval($subtotal + $_total);
     }
 
@@ -153,20 +153,17 @@ function add_to_cart($id_producto, $cantidad = 1)
     // para buscar uno con el mismo id si existe
     foreach($_SESSION['cart']['products'] as $i => $p)
     {
-        if($p['id'] == $id_producto)
+        if($id_producto === $p['id'])
         {
             $_cantidad = $p['cantidad'] + $cantidad;
             $p['cantidad'] = $_cantidad;
             $_SESSION['cart']['products'][$i] = $p;
             return true;
         }
-        else
-        {
-            $_SESSION['cart']['products'][] = $new_product;
-            return true;
-        }
     }
-    return false;
+
+    $_SESSION['cart']['products'][] = $new_product;
+    return true;
 
 }
 

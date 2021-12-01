@@ -27,6 +27,12 @@ $(document).ready(function()
         {
             wrapper.html(res.data);
         }
+        else
+        {
+            swal.fire('Upss!','Ocurrio un error','error');
+            wrapper.html('!Intenta de nuevo, por favor!');
+            return true;
+        }
 
       }).fail(function(err){
 
@@ -43,5 +49,39 @@ $(document).ready(function()
    };
 
     load_cart();
+
+    //agregar al carro al dar click en el boton
+    //actualizar la cantidad del carro si el producto ya existe dentro
+    $('.do_add_to_cart').on('click', function(event)
+    {
+        //pueden utilizar para prevenir alguna accion
+        //submit / redireccion
+        event.preventDefault();
+        var id = $(this).data('id'),
+        action = 'post';
+
+        $.ajax({
+            url: 'ajax.php',
+            type: 'POST',
+            dataType: 'JSON',
+            cache: false,
+            data:
+            {
+                action,
+                id
+            },
+            beforeSend: function()
+            {
+                console.log('Agregando....');
+            }
+        
+        }).done(function(res) {
+
+        }).fail(function(err) {
+
+        }).always(function() {
+
+        });
+    });
 });
 
