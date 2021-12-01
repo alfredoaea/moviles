@@ -92,5 +92,20 @@ switch($action)
 
           json_output(200, 'ok' , $output);
           break;
+
+          //agregar al carrito
+          case 'post':
+               if (!isset($_POST['id'], $_POST['cantidad'])) 
+               {
+                    json_output(403);
+               }
+               if (!add_to_cart((int)$_POST['id'], (int)$_POST['cantidad'])) 
+               {
+                    json_output(400,'No se pudo agregar al carrito, intenta de nuevo');
+               }
+
+               json_output(201);
+          break;
+
 }
 ?>

@@ -3,7 +3,8 @@ $(document).ready(function()
   //cargar el carro
    function load_cart()
    {
-       var wrapper = $('#cart_wrapper'),
+       var load_wrapper = $('#load_wrapper'),
+       wrapper = $('#cart_wrapper'),
        action = 'get';
 
       //peticion ajax
@@ -18,14 +19,17 @@ $(document).ready(function()
 
           beforeSend: function()
           {
-              wrapper.waitMe();
+              load_wrapper.waitMe();
           }
 
       }).done(function(res){
 
         if(res.estatus === 200)
         {
+            setTimeout(() =>{
             wrapper.html(res.data);
+            load_wrapper.waitMe('hide');
+        }, 2000);
         }
         else
         {
@@ -41,10 +45,6 @@ $(document).ready(function()
 
       }).always(function(){
 
-          setTimeout(() => {
-              wrapper.waitMe('hide');
-          }, 1500);
-
       });
    };
 
@@ -58,6 +58,7 @@ $(document).ready(function()
         //submit / redireccion
         event.preventDefault();
         var id = $(this).data('id'),
+        cantidad = $(this).data('cantidad'),
         action = 'post';
 
         $.ajax({
@@ -68,7 +69,8 @@ $(document).ready(function()
             data:
             {
                 action,
-                id
+                id,
+                cantidad
             },
             beforeSend: function()
             {
@@ -76,6 +78,17 @@ $(document).ready(function()
             }
         
         }).done(function(res) {
+            if(res.estatus === 201)
+            {
+                swal.fire('!Bien Hecho!', 'Producto Agregado al Carrito','success');
+                load_cart();
+                return;
+            }
+            else
+            {
+                swal.fire('Upss!',res.msg,'error');
+                return;
+            }
 
         }).fail(function(err) {
 
