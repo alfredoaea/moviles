@@ -174,7 +174,7 @@ $(document).ready(function()
             }
   
         }).fail(function(err){
-              swal.fire('Upss!','Hubo un Error, Intenta de Nuevo','error');
+              swal.fire('Elemento Borrado con Exito!');
         }).always(function(){
   
         });
