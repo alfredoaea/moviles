@@ -167,6 +167,24 @@ function add_to_cart($id_producto, $cantidad = 1)
 
 }
 
+function delete_from_cart($id_producto)
+{
+    if (!isset($_SESSION['cart']) || empty($_SESSION['cart']['products']))
+    {
+        return false;
+    }
+    foreach($_SESSION['cart']['products'] as $index => $p)
+    {
+        if($id_producto === $p['id'])
+        {
+           
+            unset($_SESSION['cart']['products'][$index]);
+            return true;
+        }
+    }
+    return false;
+}
+
 function destroy_cart()
 {
     unset($_SESSION['cart']);

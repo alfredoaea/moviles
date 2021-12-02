@@ -99,6 +99,7 @@ $(document).ready(function()
 
         });
     });
+    
 
     $('body').on('click', '.do_destroy_cart', destroy_cart);
     function destroy_cart(event)
@@ -135,6 +136,50 @@ $(document).ready(function()
         }).always(function(){
   
         });
+    }
+
+    //borrar elemento del carro
+    $('body').on('click', '.do_delete_from_cart', delete_from_cart);
+    function delete_from_cart(event)
+    {
+        var confirmation,
+        id = $(this).data('id'),
+        action = 'delete';
+
+        confirmation = confirm('Estas Seguro?');
+
+        if(!confirmation) return;
+
+        $.ajax({
+            url: 'ajax.php',
+            type: 'POST',
+            dataType: 'JSON',
+            data:
+            {
+              action,
+              id
+            },
+  
+        }).done(function(res){
+            if(res.estatus === 200)
+            {
+                swal.fire('Elemento Borrado con Exito!');
+                load_cart();
+                return;
+            }
+            else
+            {
+                swal.fire('upss!', res.msg,'error');
+                return;
+            }
+  
+        }).fail(function(err){
+              swal.fire('Upss!','Hubo un Error, Intenta de Nuevo','error');
+        }).always(function(){
+  
+        });
+
+
     }
 });
 

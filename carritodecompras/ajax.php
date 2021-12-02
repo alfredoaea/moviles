@@ -51,7 +51,11 @@ switch($action)
                                    <input type="number" min="0" max="50" class="form-control form-control-sm" value="'.$p['cantidad'].'">
                               </td>
                               <td class="align-middle text-right">'.format_currency(floatval($p['cantidad'] * $p['precio'])).'</td>
-                              <td class="text-right align-middle"><i class="fas fa-times text-danger"></i></td>
+                                   <td class="text-right align-middle">
+                                   <button class="btn btn-sm btn-danger do_delete_from_cart" data-id="'.$p['id'].'">
+                                   <i class="fas fa-times"></i>
+                                   </button>
+                              </td>
                          </tr>';
                     }
                     
@@ -110,10 +114,28 @@ switch($action)
           case 'destroy':
                if (!destroy_cart()) 
                {
-                    json_output(400,'No se pudo agregar al carrito, intenta de nuevo');
+                    json_output(400,'No se pudo destruir al carrito, intenta de nuevo');
                }
 
                json_output(200);
+               break;
+
+               case 'delete':
+                    if(!isset($_POST['id']))
+                    {
+                         json_output(403);  
+                    }
+                    
+                    if(!delete_from_cart((int)$_POST['id']))
+                    {
+                         json_output(400,'No se pudo borrar el producto del carrito, intenta de nuevo');
+                    }
+
+                    json_output(200);  
+               break;
+              
+               default:
+               json_output(403);  
                break;
 
 }
